@@ -1,0 +1,104 @@
+/* Overlay to center the modal */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Modal styles */
+  .modal {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 550px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cross{
+    margin-top: -35px;
+    margin-right: -15px;
+  }
+  
+  .modal-title {
+    margin-bottom: 30px;
+    text-align: left;
+    font-size: 1.3em;
+    color: #333;
+  }
+  
+  /* Form styles */
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color:black;
+  }
+  
+  .form-group input,
+  .form-group select {
+    padding: 7px;
+    font-size: .8em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Actions */
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .btn-cancel {
+    padding: 8px 12px;
+    border: none;
+    background: #ccc;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .btn-save {
+    padding: 8px 12px;
+    border: none;
+    background: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-cancel:hover {
+    background: #007bff56;
+  }
+  
+  .btn-save:hover {
+    background: #0056b3;
+  }
+  

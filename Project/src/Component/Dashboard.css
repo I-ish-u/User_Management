@@ -1,0 +1,265 @@
+/* Container */
+.user-management-container {
+    display: flex;
+    height: 600px;
+    flex-shrink: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 60px; /* Adjusted for consistent layout */
+    background-color: #003f8a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+
+/* Sidebar Logo */
+.sidebar-logo {
+    font-size: 40px; /* Adjust the size as needed */
+    font-weight: bold;
+    margin-bottom: 40px;
+    padding: 5px;
+    text-align: center;
+    flex-shrink: 0;
+    width: 100%; /* Ensures alignment with sidebar */
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    text-align: center;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.menu-item.active {
+    /* background-color: #0056b3; */
+    padding: 15px;
+    font-size: 20px;
+    border-left: 2px solid white;
+}
+
+.icon {
+    font-size: 24px;
+    color: #f4f4f47d;
+    /* margin-bottom: 10px; */
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.top-bar-left {
+    display: flex;
+    gap: 10px;
+}
+
+label{
+ margin-top: 8px;
+ font-weight: 600;
+}
+
+.dropdown {
+    padding: 8px;
+    padding-right: 80px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.top-search-bar {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('images.jpeg');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    background-size: 10%;
+    padding: 10px 20px 8px 40px;
+}
+
+.bell {
+    font-size: 15px;
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.profile-initials {
+    background-color: #ccc;
+    color: black;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-right: 40px;
+}
+
+.profile-name {
+    font-size: 16px;
+    margin-right: 20px;
+    font-weight: 600;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* User Management Section */
+.user-management {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Header Section */
+.header {
+    margin-top: -15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Tabs */
+.tabcontainer{
+    font-family: Arial, sans-serif;
+    margin-top: 40px;
+    background-color: white;
+}
+
+.tabs {
+    display: flex;
+    position: relative;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab {
+    padding: 15px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 16px;
+    color: #555;
+    outline: none;
+}
+
+.tab.active {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    font-weight: bold;
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Search Bar */
+.search-bar {
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    background-image: url('images.jpeg');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    background-size: 8%;
+    padding: 10px 20px 8px 40px;
+}
+
+/* add user */
+.add-user {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* User Table */
+.user-table th {
+    background-color: #f4f4f4;
+    position: sticky; 
+    top: 0;
+    z-index: 1; 
+}
+
+.table-wrapper {
+    flex: 1; 
+    max-height: 55vh; 
+    overflow-y: auto; 
+    border: 1px solid #ddd;
+}
+
+/* User Table */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-table th, .user-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.user-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.status{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.edit-icon {
+    font-size: 18px;
+    color: #007bff; 
+  }
+
+.edit-icon:hover {
+    color: #0056b3;
+}
+  
+
+
+
