@@ -8,7 +8,7 @@
 /* Sidebar */
 .sidebar {
     width: 60px; /* Adjusted for consistent layout */
-    background-color: #003f8a;
+    background-color: rgb(28, 28, 184);
     color: white;
     display: flex;
     flex-direction: column;
@@ -182,7 +182,7 @@ label{
 }
 
 .tab.active {
-    color: #007bff;
+    color: rgb(28, 28, 184);
     border-bottom: 2px solid #007bff;
     font-weight: bold;
 }
@@ -208,7 +208,7 @@ label{
 
 /* add user */
 .add-user {
-    background-color: #007bff;
+    background-color:rgb(28, 28, 184);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -253,7 +253,9 @@ label{
 }
 .edit-icon {
     font-size: 18px;
-    color: #007bff; 
+    color: rgb(28, 28, 184); 
+    background-color: white;
+    border: none;
   }
 
 .edit-icon:hover {

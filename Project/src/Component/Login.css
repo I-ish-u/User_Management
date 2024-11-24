@@ -1,0 +1,107 @@
+  .container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .left-section {
+    /* flex: 1; */
+    width: 800px;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST5uNEfPoEzZbcfdTlXA5Ar8M6aF6WPtz5Xw&s);
+    background-size: cover;
+    color: white;
+    padding: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .left-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .left-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .left-section p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .right-section {
+    flex: 1;
+    background-color: white;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .right-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .form-group input {
+    padding: 10px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .remember-me label{
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .login-button {
+    padding: 10px;
+    font-size: 1rem;
+    color: white;
+    background-color: rgb(28, 28, 184);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #0040c4;
+  }
+  
+  .forgot-password {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  

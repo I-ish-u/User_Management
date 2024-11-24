@@ -1,74 +1,68 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import "./AddUser.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
+const Edit = ({closeedit,selectemp,setusers,users}) => {
+    const [firstName, setfirstname] = useState(selectemp.firstName);
+    const [lastName, setlastname] = useState(selectemp.lastName);
+    const [mobile, setmobile] = useState(selectemp.mobile);
+    const [email, setemail] = useState(selectemp.email);
+    const [office, setoffice] = useState(selectemp.office);
+    const [roles, setroles] = useState(selectemp.roles);
+    const [status, setstatus] = useState(selectemp.status);
 
-const AddUser = ({ closemodel,addUser,users,setusers }) => {
-  const textInput = useRef(null);
+    const id=selectemp.id;
 
-  useEffect(() => {
-    document.body.style.overflowY = "hidden";
-    textInput.current.focus();
-
-    return () => {
-      document.body.style.overflowY = "scroll";
-    };
-  }, []);
-
-  const [firstName, setfirstname] = useState("");
-  const [lastName, setlastname] = useState("");
-  const [mobile, setmobile] = useState("");
-  const [email, setemail] = useState("");
-  const [office, setoffice] = useState("");
-  const [roles, setroles] = useState("");
-  const [status, setstatus] = useState("Active");
-
-  const id=users.length+1;
-
-  const handlesubmit = (e) => {
-    e.preventDefault();
-    if (firstName && lastName && mobile && email && office && roles && status) {
-      const newemployee = {
-        id,
-        firstName,
-        lastName,
-        mobile,
-        email,
-        office,
-        roles,
-        status
-      };
-      setusers([...users,newemployee]);
-      closemodel();
-      alert("Employee details submitted successfully");
-    } else {
-      alert("All fields are mandatory");
+    const update=(e)=>{
+        e.preventDefault();
+        if(firstName && lastName && mobile && email && office && roles && status){
+            const employee={
+                id,
+                firstName,
+                lastName,
+                mobile,
+                email,
+                office,
+                roles,
+                status
+            };
+          for(let i=0;i<users.length;i++){
+            if(users[i].id===id){
+                users.splice(i,1,employee);
+                break;
+            }
+          }
+          setusers(users);
+          closeedit();
+          alert("updated");
+        }
+        else{
+            alert("All Fields are Mandatory")
+        }
     }
-  };
 
   return (
     <div className="overlay">
       <div className="modal">
         <div className="header">
-          <h2 className="modal-title">ADD USER</h2>
+          <h2 className="modal-title">UPDATE</h2>
           <FontAwesomeIcon
             className="cross"
-            onClick={closemodel}
             icon={faCircleXmark}
             aria-label="Close Modal"
+            onClick={closeedit}
           />
         </div>
-        <form className="modal-form" onSubmit={handlesubmit}>
+        <form onSubmit={update} className="modal-form">
           <div className="form-row">
             <div className="form-group">
               <label>First Name*</label>
               <input
                 type="text"
                 placeholder="Enter First Name"
-                ref={textInput}
                 value={firstName}
-                onChange={(e) => setfirstname(e.target.value)}
+                onChange={e=>setfirstname(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -77,7 +71,7 @@ const AddUser = ({ closemodel,addUser,users,setusers }) => {
                 type="text"
                 placeholder="Enter Last Name"
                 value={lastName}
-                onChange={(e) => setlastname(e.target.value)}
+                onChange={e=>setlastname(e.target.value)}
               />
             </div>
           </div>
@@ -88,7 +82,7 @@ const AddUser = ({ closemodel,addUser,users,setusers }) => {
                 type="tel"
                 placeholder="+00 0000000000"
                 value={mobile}
-                onChange={(e) => setmobile(e.target.value)}
+                onChange={e=>setmobile(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -97,23 +91,23 @@ const AddUser = ({ closemodel,addUser,users,setusers }) => {
                 type="email"
                 placeholder="eg. test@gmail.com"
                 value={email}
-                onChange={(e) => setemail(e.target.value)}
+                onChange={e=>setemail(e.target.value)}
               />
             </div>
           </div>
           <div className="form-row">
             <div className="form-group">
               <label>Office Location*</label>
-              <select value={office} onChange={(e) => setoffice(e.target.value)}>
-                <option value="" disabled>Select Location</option>
+              <select>
+                <option value={office} disabled onChange={e=>setoffice(e.target.value)}>Select Location</option>
                 <option value="New York">New York</option>
                 <option value="San Francisco">San Francisco</option>
               </select>
             </div>
             <div className="form-group">
               <label>Roles*</label>
-              <select value={roles} onChange={(e) => setroles(e.target.value)}>
-                <option value="" disabled>Select Role</option>
+              <select>
+                <option value={roles} disabled onChange={e=>setroles(e.target.value)}>Select Role</option>
                 <option value="Developer">Developer</option>
                 <option value="Manager">Manager</option>
               </select>
@@ -122,18 +116,18 @@ const AddUser = ({ closemodel,addUser,users,setusers }) => {
           <div className="form-row">
             <div className="form-group">
               <label>Status*</label>
-              <select value={status} onChange={(e) => setstatus(e.target.value)}>
+              <select value={status} onChange={e=>setstatus(e.target.value)}>
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
               </select>
             </div>
           </div>
           <div className="form-actions">
-            <button type="button" className="btn-cancel" onClick={closemodel}>
+            <button type="button" className="btn-cancel" onClick={closeedit}>
               Cancel
             </button>
             <button type="submit" className="btn-save">
-              Save
+              Update
             </button>
           </div>
         </form>
@@ -142,4 +136,4 @@ const AddUser = ({ closemodel,addUser,users,setusers }) => {
   );
 };
 
-export default AddUser;
+export default Edit;

@@ -4,17 +4,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCircleQuestion, faEdit, faEnvelope, faGear, faMessage, faStroopwafel, faTowerBroadcast, faUserEdit, faUserGear } from '@fortawesome/free-solid-svg-icons';
 import AddUser from "./AddUser";
 import {users as initials} from "./employe"
+import Edit from "./Edit";
 
 function Dashboard() {
 
     const[users,setusers]=useState(initials);
     const[openmodal,setOpenmodal]=useState(false);
+    const[edit,setEdit]=useState(false);
+    const[selectemp,setselectemp]=useState(null);
 
+    const[search,setsearch]=useState("");
+
+    const closeedit = () => setEdit(false);
     const closemodel = () => setOpenmodal(false);
 
-    const addUser=(newUser)=>{
-        setusers((prevUsers)=>[...prevUsers, { ...newUser, id: prevUsers.length + 1 }]);
-        closemodel();
+    const handleedit =(id)=>{
+        const [editemp]=users.filter(editemp=>editemp.id===id);
+        setselectemp(editemp);
+        setEdit(true);
     }
 
     return (
@@ -56,10 +63,16 @@ function Dashboard() {
                         <label>Practice</label>
                         <select className="dropdown">
                             <option>All</option>
+                            <option>Eye Vision</option>
+                            <option>EyeCare Med</option>
+                            <option>Eye Care</option>
                         </select>
                         <label>Location</label>
                         <select className="dropdown">
                             <option>All</option>
+                            <option>America</option>
+                            <option>Indonesia</option>
+                            <option>Australia MD</option>
                         </select>
                     </div>
                     <div className="top-bar-right">
@@ -84,7 +97,7 @@ function Dashboard() {
                         </div>
                     </div>
                     <div className="content">
-                        <input type="text" className="search-bar" placeholder="Search Name" />
+                        <input type="text" className="search-bar" onChange={(e)=>setsearch(e.target.value)} placeholder="Search Name" />
                         <button className="add-user" onClick={()=>{setOpenmodal(true)}}>Add User</button>
                     </div>
                     <div className="table-wrapper">
@@ -102,7 +115,9 @@ function Dashboard() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.map((user) => (
+                                {users.filter((item)=>{
+                                    return search.toLowerCase===""?item:item.firstName.toLowerCase().includes(search);
+                                }).map((user) => (
                                     <tr key={user.id}>
                                         <td>{user.id}</td>
                                         <td>{user.lastName}</td>
@@ -113,9 +128,9 @@ function Dashboard() {
                                         <td>{user.office}</td>
                                         <td className="status">
                                             <div>{user.status}</div>
-                                            <a href={`/edit/${user.id}`} className="edit-icon">
-                                            <FontAwesomeIcon icon={faUserEdit}/>
-                                            </a>
+                                            <button className="edit-icon" onClick={()=>{handleedit(user.id)}}>
+                                             <FontAwesomeIcon icon={faUserEdit}/>
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}
@@ -124,7 +139,8 @@ function Dashboard() {
                     </div>
                 </main>
             </div>
-           {openmodal && <AddUser closemodel={closemodel} addUser={addUser} initials={users}/>}
+           {openmodal && <AddUser closemodel={closemodel} users={users} setusers={setusers}/>}
+           {edit && <Edit closeedit={closeedit} handleedit={handleedit} selectemp={selectemp} users={users} setusers={setusers} />}
         </div>
     );
 }
