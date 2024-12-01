@@ -5,9 +5,12 @@ import { faBell, faCircleQuestion, faEdit, faEnvelope, faGear, faMessage, faStro
 import AddUser from "./AddUser";
 import {users as initials} from "./employe"
 import Edit from "./Edit";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import GroupTable from "./Table";
 
 function Dashboard() {
-
+    const[active,setactive]=useState(0);
     const[users,setusers]=useState(initials);
     const[openmodal,setOpenmodal]=useState(false);
     const[edit,setEdit]=useState(false);
@@ -17,6 +20,10 @@ function Dashboard() {
 
     const closeedit = () => setEdit(false);
     const closemodel = () => setOpenmodal(false);
+
+    const handleChange=(event,tab)=>{
+        setactive(tab);
+    }
 
     const handleedit =(id)=>{
         const [editemp]=users.filter(editemp=>editemp.id===id);
@@ -92,15 +99,20 @@ function Dashboard() {
                     </div>
                     <div className="tabcontainer">
                         <div className="tabs">
-                            <button className="tab active">All Users</button>
-                            <button className="tab">All Groups</button>
+                            <Tabs value={active} onChange={handleChange}>
+                                <Tab label="All Users" />
+                                <Tab label="All Groups" />
+                            </Tabs>
                         </div>
                     </div>
-                    <div className="content">
+                    
+                    {active===0 && 
+                    <>
+                        <div className="content">
                         <input type="text" className="search-bar" onChange={(e)=>setsearch(e.target.value)} placeholder="Search Name" />
                         <button className="add-user" onClick={()=>{setOpenmodal(true)}}>Add User</button>
-                    </div>
-                    <div className="table-wrapper">
+                        </div>  
+                        <div className="table-wrapper">
                         <table className="user-table">
                             <thead>
                                 <tr>
@@ -129,14 +141,21 @@ function Dashboard() {
                                         <td className="status">
                                             <div>{user.status}</div>
                                             <button className="edit-icon" onClick={()=>{handleedit(user.id)}}>
-                                             <FontAwesomeIcon icon={faUserEdit}/>
+                                            <FontAwesomeIcon icon={faUserEdit}/>
                                             </button>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                    </div>
+                        </div>
+                    </>
+                  }
+                  {active===1 && 
+                  <>  
+                  <GroupTable/>
+                  </>  
+                  }
                 </main>
             </div>
            {openmodal && <AddUser closemodel={closemodel} users={users} setusers={setusers}/>}

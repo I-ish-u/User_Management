@@ -35,7 +35,6 @@ const Edit = ({closeedit,selectemp,setusers,users}) => {
           }
           setusers(users);
           closeedit();
-          alert("updated");
         }
         else{
             alert("All Fields are Mandatory")

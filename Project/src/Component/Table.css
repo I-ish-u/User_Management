@@ -1,0 +1,6 @@
+.MuiTableRow-root:nth-child(even) {
+    background-color: #f9f9f9;
+ }
+ .MuiTableHead-root{
+    background-color: #f4f4f4;;
+ }
