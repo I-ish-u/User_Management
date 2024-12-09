@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import "./AddUser.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { updateUser } from "./Reducer";
+
 
 const Edit = ({closeedit,selectemp,setusers,users}) => {
+    const dispatch=useDispatch()
     const [firstName, setfirstname] = useState(selectemp.firstName);
     const [lastName, setlastname] = useState(selectemp.lastName);
     const [mobile, setmobile] = useState(selectemp.mobile);
@@ -14,32 +18,26 @@ const Edit = ({closeedit,selectemp,setusers,users}) => {
 
     const id=selectemp.id;
 
-    const update=(e)=>{
-        e.preventDefault();
-        if(firstName && lastName && mobile && email && office && roles && status){
-            const employee={
-                id,
-                firstName,
-                lastName,
-                mobile,
-                email,
-                office,
-                roles,
-                status
-            };
-          for(let i=0;i<users.length;i++){
-            if(users[i].id===id){
-                users.splice(i,1,employee);
-                break;
-            }
-          }
-          setusers(users);
+    const update = (e) => {
+      e.preventDefault();
+      if (firstName && lastName && mobile && email && office && roles && status) {
+        const updatedUsers = {
+          id,
+          firstName,
+          lastName,
+          mobile,
+          email,
+          office,
+          roles,
+          status,
+        };
+          dispatch(updateUser(updatedUsers))
           closeedit();
-        }
-        else{
-            alert("All Fields are Mandatory")
-        }
-    }
+      } else {
+          alert("All Fields are Mandatory");
+      }
+  };
+  
 
   return (
     <div className="overlay">

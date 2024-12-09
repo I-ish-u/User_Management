@@ -2,9 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import "./AddUser.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { addusers } from "./Reducer";
 
 
-const AddUser = ({ closemodel,addUser,users,setusers }) => {
+
+const AddUser = ({ closemodel }) => {
+  const userlist=useSelector((state)=>state.userlist)
+  const dispatch=useDispatch();
   const textInput = useRef(null);
 
   useEffect(() => {
@@ -24,7 +29,7 @@ const AddUser = ({ closemodel,addUser,users,setusers }) => {
   const [roles, setroles] = useState("");
   const [status, setstatus] = useState("Active");
 
-  const id=users.length+1;
+  const id=userlist.length+1;
 
   const handlesubmit = (e) => {
     e.preventDefault();
@@ -39,7 +44,7 @@ const AddUser = ({ closemodel,addUser,users,setusers }) => {
         roles,
         status
       };
-      setusers([...users,newemployee]);
+      dispatch(addusers(newemployee));
       closemodel();
       alert("Employee details submitted successfully");
     } else {

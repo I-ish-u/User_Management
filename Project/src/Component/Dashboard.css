@@ -251,6 +251,12 @@ label{
     align-items: center;
     justify-content: space-between;
 }
+.control{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
 .edit-icon {
     font-size: 18px;
     color: rgb(28, 28, 184); 

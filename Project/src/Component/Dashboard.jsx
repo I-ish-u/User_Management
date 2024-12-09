@@ -1,32 +1,38 @@
 import React, { useState } from "react";
 import "./Dashboard.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faCircleQuestion, faEdit, faEnvelope, faGear, faMessage, faStroopwafel, faTowerBroadcast, faUserEdit, faUserGear } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faCircleQuestion, faEdit, faEnvelope, faGear, faMessage, faStroopwafel, faTowerBroadcast, faTrashCan, faUserEdit, faUserGear } from '@fortawesome/free-solid-svg-icons';
 import AddUser from "./AddUser";
 import {users as initials} from "./employe"
 import Edit from "./Edit";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import GroupTable from "./Table";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUser } from "./Reducer";
 
 function Dashboard() {
+    const userlist=useSelector((state)=>state.userlist);
     const[active,setactive]=useState(0);
     const[users,setusers]=useState(initials);
     const[openmodal,setOpenmodal]=useState(false);
     const[edit,setEdit]=useState(false);
     const[selectemp,setselectemp]=useState(null);
-
     const[search,setsearch]=useState("");
-
     const closeedit = () => setEdit(false);
     const closemodel = () => setOpenmodal(false);
+    const dispatch=useDispatch();
+
+    const deleteuser =(id)=>{
+        dispatch(deleteUser(id));
+    }
 
     const handleChange=(event,tab)=>{
         setactive(tab);
     }
 
     const handleedit =(id)=>{
-        const [editemp]=users.filter(editemp=>editemp.id===id);
+        const [editemp]=userlist.filter(editemp=>editemp.id===id);
         setselectemp(editemp);
         setEdit(true);
     }
@@ -127,7 +133,7 @@ function Dashboard() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.filter((item)=>{
+                                {userlist.filter((item)=>{
                                     return search.toLowerCase===""?item:item.firstName.toLowerCase().includes(search);
                                 }).map((user) => (
                                     <tr key={user.id}>
@@ -141,7 +147,10 @@ function Dashboard() {
                                         <td className="status">
                                             <div>{user.status}</div>
                                             <button className="edit-icon" onClick={()=>{handleedit(user.id)}}>
-                                            <FontAwesomeIcon icon={faUserEdit}/>
+                                                <FontAwesomeIcon icon={faUserEdit}/>
+                                            </button>
+                                            <button className="edit-icon" onClick={()=>{deleteuser(user.id)}}>
+                                                <FontAwesomeIcon icon={faTrashCan}/>
                                             </button>
                                         </td>
                                     </tr>
@@ -158,8 +167,8 @@ function Dashboard() {
                   }
                 </main>
             </div>
-           {openmodal && <AddUser closemodel={closemodel} users={users} setusers={setusers}/>}
            {edit && <Edit closeedit={closeedit} handleedit={handleedit} selectemp={selectemp} users={users} setusers={setusers} />}
+           {openmodal && <AddUser closemodel={closemodel} users={users} setusers={setusers}/>}
         </div>
     );
 }

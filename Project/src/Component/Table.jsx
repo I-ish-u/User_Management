@@ -19,7 +19,6 @@ const GroupTable = () => {
     const[users,setusers]=useState(initials);
     const[select,setselect]=useState(null);
     const[openmodal,setOpenmodal]=useState(false)
-
     const closemodel=()=>setOpenmodal(false);
     const closeedit=()=>setedit(false);
 
@@ -54,7 +53,7 @@ const GroupTable = () => {
                     return searchbox.toLowerCase()===""?item:item.firstName.toLowerCase().includes(searchbox);
                 }).map((row) => (
                     <TableRow
-                    key={row.name}
+                    key={row.id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                     <TableCell align='left' component="th" scope="row" sx={{fontSize:"16px",padding:"8px"}}>
